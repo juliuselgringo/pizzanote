@@ -1,10 +1,25 @@
 <?php 
 require_once "elements/head.php";
 require_once 'Class/DBconnection.php';
+require_once 'Class/Notation.php';
+
+$alertClass= "alert-danger";
+$alertMsg = "Saisissez-votre au minimum votre pseudo";
 
 if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-connection'){
     $pizzaConfig = new DBconnection;
     $alertMsg = $pizzaConfig->closeFct();
+    $alertClass = 'alert-danger';
+}
+
+if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-notation'){
+    if(!empty($_POST['item-search']) && !empty($_POST['sous-item-search']) && !empty($_POST['update-min']) && !empty($_POST['update-max']) && !empty($_POST['update-ponderation'])){
+        $updateNotation = new Notation;
+        $alertMsg = $updateNotation->updateNotation();
+    }
+    else{
+        return "l'un des champs est vide!";
+    }
 }
 
 ?>
@@ -28,7 +43,9 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
             <div class="search">
                 <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
             </form>
-            <div id='message'><?= $alertMsg ?></div>
+
+            <div class='<?= $alertClass ?>' id='message'><?= $alertMsg ?></div>
+
             <div id="display-search"></div>
         </div>
         <div class="update">
@@ -38,11 +55,12 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
                 
                 <label for="sous-item-search">Saisissez un sous-item</label>
                 <input id="sous-item-search" name="sous-item-search"></input>
-                <label for="update-max">Saisissez max</label>
-                <input id="update-max" name="update-max"></input>
                 
                 <label for="update-min">Saisissez min</label>
                 <input id="update-min" name="update-min"></input>
+
+                <label for="update-max">Saisissez max</label>
+                <input id="update-max" name="update-max"></input>
 
                 <label for="update-ponderation">Saisissez ponderation</label>
                 <input id="update-ponderation" name="update-ponderation"></input>

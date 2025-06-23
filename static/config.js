@@ -27,8 +27,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         })
         .then(data=> {
             const messageAlert = data['message'];
+            const alertClass = data['class'];
             const dataNotation = data['dataNotation'];
             displayMessage.textContent= messageAlert;
+            displayMessage.className = alertClass;
             dataNotation.forEach(item => {
                 
                 if (itemSearch.value === item['item'] && sousitemSearch.value === item['sous_item']){
