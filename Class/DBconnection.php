@@ -1,8 +1,14 @@
 <?php
 class DBconnection{
+    /*
     private $dsn = 'pgsql:host=localhost;dbname=pizzanote';
     private $user = 'postgres';
     private $password = '29017507';
+    private $pdo = null;
+    */
+    private $dsn = 'pgsql:host=localhost;port=5432;dbname=hupo2832_pizzanote';
+    private $user = 'hupo2832';
+    private $password = 'eHf3-BnLJ-Faw(';
     private $pdo = null;
     
     /**
