@@ -1,0 +1,77 @@
+Cahier des charges – V1 du site de notation de pizzas
+Nous souhaitons développer un site responsive, avec une priorité donnée à l’usage sur mobile, permettant à un groupe de personnes de noter des pizzas lors d’un repas partagé.
+
+🎯 Fonctionnalités principales
+Lors d’un repas pizza, chaque participant ouvre le site et se voit proposer trois actions :
+
+Créer un nouveau repas
+
+Rejoindre un repas
+
+Afficher les notes
+
+👤 Création d’un repas
+Lorsqu’un utilisateur clique sur « Créer un nouveau repas », il devient l’hôte de la session.
+Avant de continuer, le site lui demande de renseigner son prénom ou pseudo.
+
+L’hôte accède ensuite au formulaire de notation, ainsi qu’à deux boutons permettant d’inviter facilement d’autres personnes :
+
+Partager le code du repas
+
+Partager un QR Code généré automatiquement
+
+👥 Rejoindre un repas
+Les autres participants peuvent rejoindre le repas de deux manières :
+
+En scannant le QR Code partagé par l’hôte
+
+En saisissant manuellement le code du repas via le bouton « Rejoindre un repas »
+
+Chaque personne rejoint la même session de repas, mais accède à une interface de notation individuelle sur son propre appareil.
+
+✅ Notation & envoi
+Chaque participant peut :
+
+Remplir le formulaire de notation sur son téléphone
+
+Valider ses notes à la fin du formulaire
+
+Les notes individuelles sont ensuite stockées et agrégées. Une moyenne est calculée et sauvegardée dans une table dédiée.
+
+📊 Affichage des résultats
+Les données ainsi collectées permettent :
+
+De voir les notes individuelles
+
+D’afficher un classement (top) des meilleures pizzerias notées
+
+Premier jet sur les items faisant partie du formulaire:
+
+Item	    Sous item	            min (int)	max (int)	pondération (float)
+Pâte	    Alvéoles	                0	       3	        1
+Pâte	    Cuisson	                    0	       3	        1
+Pâte	    Texture	                    0	       3	        1
+Pâte	    Goût	                    0	       3	        1
+Pâte	    Digestion	                0	       3	        1
+Pâte	    Equilibre	                0	       3	        1
+Garniture	Charcuterie	                0	       3	        1
+Garniture	Recettes	                0	       3	        1
+Garniture	Fromage	                    0	       3	        1
+Garniture	Equilibre	                0	       3	        1
+Garniture	Visuel	                    0	       3	        1
+Garniture	Détails	                    0	       3	        1
+Cadre	    Ambiance	                0	       3	        1
+Cadre	    Desserts	                0	       3	        1
+Cadre	    Boissons	                0	       3	        1
+Cadre	    Service	                    0	       3	        1
+Cadre	    Amuse-bouches	            0	       3	        0,5
+Cadre	    Toilettes	                0	       3	        0,5
+Cadre	    Impression générale	        0	       3	        1
+Praticité	A pieds     	            0	       1	        1
+Praticité	Parking	                    0	       1	        1
+Praticité	Durée de la pause	        0	       3	        1
+Praticité	Carte resto	                0	       1	        1
+Praticité	Réservation en ligne	    0	       1	        0,5
+Praticité	Disponibilité	            0	       3	        1
+Praticité	Rapport qualité/prix	    0	       3	        1
+Praticité	Distance	                0	       3	        1

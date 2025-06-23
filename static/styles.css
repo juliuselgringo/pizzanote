@@ -1,0 +1,67 @@
+html{
+    background-color: rgb(168, 147, 175);
+}
+
+body{
+    width: 100vw;
+}
+
+main{
+    width: 99w;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid black;
+    margin-right: 15px;
+}
+
+
+h1, h2, button{
+    margin: auto;
+    display: block;
+    justify-self: center;
+}
+
+label{
+    display: block;
+    justify-self: center;
+}
+
+button{
+    display: block;
+    justify-self: center;
+    background-color: rgb(151, 108, 191);
+    width: 70vw;
+    height: 15vw;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+input{
+    display: block;
+    justify-self: center;
+    margin:5px;
+}
+
+.alert-success{
+    background-color: rgb(175, 227, 175);
+    margin: 5px;
+}
+
+.alert-danger{
+    background-color: rgb(227, 172, 172);
+    margin: 5px;
+}
+
+#display-search{
+    display: block;
+    justify-self: center;
+    text-align: center;
+    background-color: grey;
+    border: 1px solid black;
+    margin-top: 5px;
+    width: 70vw;
+    height: fit-content;
+}
