@@ -11,9 +11,10 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
     $alertMsg = $pizzaConfig->closeFct();
     $alertClass = 'alert-danger';
 }
-
+/*
 if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-notation'){
-    if(!empty($_POST['item-search']) && !empty($_POST['sous-item-search']) && !empty($_POST['update-min']) && !empty($_POST['update-max']) && !empty($_POST['update-ponderation'])){
+    if(!empty($_POST['item-update']) && !empty($_POST['sous-item-update']) && !empty($_POST['update-min']) && !empty($_POST['update-max']) && !empty($_POST['update-ponderation'])){
+        echo "appel fct updateNotation";
         $updateNotation = new Notation;
         $alertMsg = $updateNotation->updateNotation();
     }
@@ -21,28 +22,27 @@ if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-not
         return "l'un des champs est vide!";
     }
 }
-
+*/
 ?>
 
 <body>
     <a href='index.php' >Accueil</a>
     <main>
         <h1>Modifier les paramètres</h1>
-        
+        <div class="search">
             <label for='name' >Saisissez votre pseudo</label>
             <input type='text' name='name' id='name' >
         
-            <form method='POST'>
-                <label for="item-search">Saisissez un item</label>
-                <input id="item-search"></input>
+            <label for="item-search">Saisissez un item</label>
+            <input id="item-search"></input>
+            
+            <label for="sous-item-search">Saisissez un sous-item</label>
+            <input id="sous-item-search"></input>
                 
-                <label for="sous-item-search">Saisissez un sous-item</label>
-                <input id="sous-item-search"></input>
-                
-                <button type='submit' name='connection' id='connection' value='connection'>Rechercher</button>
-            <div class="search">
-                <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
-            </form>
+            <button type='submit' name='connection' id='connection' value='connection'>Rechercher</button>
+        
+            <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
+
 
             <div class='<?= $alertClass ?>' id='message'><?= $alertMsg ?></div>
 
@@ -51,21 +51,21 @@ if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-not
         <div class="update">
             <form method='POST'>
                 <label for="item-search">Saisissez un item</label>
-                <input id="item-search" name="item-search"></input>
+                <input id="item-update" name="item-update"></input>
                 
                 <label for="sous-item-search">Saisissez un sous-item</label>
-                <input id="sous-item-search" name="sous-item-search"></input>
+                <input id="sous-item-update" name="sous-item-update"></input>
                 
-                <label for="update-min">Saisissez min</label>
-                <input id="update-min" name="update-min"></input>
+                <label for="min-update">Saisissez min</label>
+                <input id="min-update" name="min-update"></input>
 
-                <label for="update-max">Saisissez max</label>
-                <input id="update-max" name="update-max"></input>
+                <label for="max-update">Saisissez max</label>
+                <input id="max-update" name="max-update"></input>
 
-                <label for="update-ponderation">Saisissez ponderation</label>
-                <input id="update-ponderation" name="update-ponderation"></input>
+                <label for="ponderation-update">Saisissez ponderation</label>
+                <input id="ponderation-update" name="ponderation-update"></input>
 
-                <button type='submit' name='update-notation' value='update-notation'>Modifier</button>
+                <button type='submit' id='update-notation' name='update-notation' value='update-notation'>Modifier</button>
             </form>
             <pre>
                 <?= var_dump($_POST) ?>

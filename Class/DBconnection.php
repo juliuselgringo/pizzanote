@@ -53,7 +53,7 @@ class DBconnection{
             }
         } 
         catch (Exception $exception) {
-            return "Oups! Problème de requête?" . $exception;
+            return $pizzaQuerry . " / " . $exception;
         }
     }
 }
