@@ -68,6 +68,7 @@ class Notation extends DBconnection{
                     'message' => $messageAlert,
                     'class' => 'alert-danger'
                 ];
+                $this->closeFct();
             }
         }
     }

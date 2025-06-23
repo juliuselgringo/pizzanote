@@ -11,6 +11,8 @@ class DBconnection{
     private $password = 'eHf3-BnLJ-Faw(';
     private $pdo = null;
     
+
+    
     /**
      * connectFct
      *

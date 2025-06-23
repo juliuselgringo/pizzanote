@@ -11,6 +11,7 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
     $alertMsg = $pizzaConfig->closeFct();
     $alertClass = 'alert-danger';
 }
+
 /*
 if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-notation'){
     if(!empty($_POST['item-update']) && !empty($_POST['sous-item-update']) && !empty($_POST['update-min']) && !empty($_POST['update-max']) && !empty($_POST['update-ponderation'])){
@@ -40,9 +41,10 @@ if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-not
             <input id="sous-item-search"></input>
                 
             <button type='submit' name='connection' id='connection' value='connection'>Rechercher</button>
-        
-            <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
 
+            <form method="POST">
+                <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
+            </form>
 
             <div class='<?= $alertClass ?>' id='message'><?= $alertMsg ?></div>
 
