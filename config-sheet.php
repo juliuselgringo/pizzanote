@@ -13,34 +13,45 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
     <a href='index.php' >Accueil</a>
     <main>
         <h1>Modifier les paramètres</h1>
-        <div class="search">
+        
             <label for='name' >Saisissez votre pseudo</label>
             <input type='text' name='name' id='name' >
-
-            <label for="item-search">Saisissez un item</label>
-            <input id="item-search"></input>
-            
-            <label for="sous-item-search">Saisissez un sous-item</label>
-            <input id="sous-item-search"></input>
-            
-            <button type='submit' name='connection' id='connection' value='connection'>Rechercher</button>
-            <form method="POST">
+        
+            <form method='POST'>
+                <label for="item-search">Saisissez un item</label>
+                <input id="item-search"></input>
+                
+                <label for="sous-item-search">Saisissez un sous-item</label>
+                <input id="sous-item-search"></input>
+                
+                <button type='submit' name='connection' id='connection' value='connection'>Rechercher</button>
+            <div class="search">
                 <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
             </form>
             <div id='message'><?= $alertMsg ?></div>
             <div id="display-search"></div>
         </div>
         <div class="update">
-            <label for="update-max">Saisissez max</label>
-            <input id="update-max"></input>
-            
-            <label for="update-min">Saisissez min</label>
-            <input id="update-min"></input>
+            <form method='POST'>
+                <label for="item-search">Saisissez un item</label>
+                <input id="item-search" name="item-search"></input>
+                
+                <label for="sous-item-search">Saisissez un sous-item</label>
+                <input id="sous-item-search" name="sous-item-search"></input>
+                <label for="update-max">Saisissez max</label>
+                <input id="update-max" name="update-max"></input>
+                
+                <label for="update-min">Saisissez min</label>
+                <input id="update-min" name="update-min"></input>
 
-            <label for="update-ponderation">Saisissez ponderation</label>
-            <input id="update-ponderation"></input>
+                <label for="update-ponderation">Saisissez ponderation</label>
+                <input id="update-ponderation" name="update-ponderation"></input>
 
-            
+                <button type='submit' name='update-notation' value='update-notation'>Modifier</button>
+            </form>
+            <pre>
+                <?= var_dump($_POST) ?>
+            </pre>
         </div>
 
         
