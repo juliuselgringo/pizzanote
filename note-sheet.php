@@ -20,6 +20,12 @@ if(isset($_GET['hide']) && $_GET['hide'] === 'hide'){
 $evalData = [];
 $evaluation = new Evaluation();
 $evalData = $evaluation->getEvalution();
+$alertClass = '';
+$alertMsg = '';
+if(isset($_POST['send-btn']) && $_POST['send-btn'] === 'send-btn'){
+    $alertMsg = $evaluation->sendEvaluation();
+    $alertClass = 'alert-success';
+}
 
 require_once "elements/head.php";
 ?>
@@ -37,12 +43,13 @@ require_once "elements/head.php";
     <p>Bienvenue <?= $_SESSION['name'] ?> </p>
     <div class="notation-sheet" id="notation-sheet"></div>
     <h2>Que l'évaluation soit</h2>
-    <?php foreach($evalData as $evalLine): ?>
-        <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
-        <p><input type="number" id="note <?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>" min="<?= $evalLine["min"] ?>" max="<?= $evalLine["max"] ?>" step="<?= $evalLine["ponderation"] ?>" > /<?= $evalLine["max"] ?> ponderation:<?= $evalLine["ponderation"] ?></p>
-    <?php endforeach ?>
-    <pre>
-        <?= var_dump($evalData) ?>
-    </pre>
+    <form method="POST">
+        <?php foreach($evalData as $evalLine): ?>
+            <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
+            <p><input type="number" name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>" min="<?= $evalLine["min"] ?>" max="<?= $evalLine["max"] ?>" step="<?= $evalLine["ponderation"] ?>" > /<?= $evalLine["max"] ?> ponderation:<?= $evalLine["ponderation"] ?></p>
+        <?php endforeach ?>
+        <button type="submit" name="send-btn" value="send-btn" >Valider</button>
+        <div class="<?= $alertClass ?>"><pre><?= var_dump($alertMsg) ?></pre></div>
+    </form>
     
 </body>
