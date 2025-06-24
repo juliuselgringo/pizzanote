@@ -1,5 +1,0 @@
-DB
-Nom
-user
-MP
-julius2832

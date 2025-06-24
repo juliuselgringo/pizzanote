@@ -1,20 +1,25 @@
 <?php 
 require_once "Class/Authentification.php";
+require_once "Class/Evaluation.php";
 
 $authNoteSheet = new Authentification();
 var_dump($authNoteSheet->is_connected());
 $authNoteSheet->user_to_login();
 
 include 'phpqrcode/qrlib.php';
-if($_GET['share'] === 'share'){
+if(isset($_GET['share']) && $_GET['share'] === 'share'){
     $lien = "join-meal.php?idSession=" . $_SESSION['idSession'] . "&restaurant=" . $_SESSION['restaurant'];
     QRcode::png($lien, 'image-qrcode.png');
 }
 
 $hide = '';
-if($_GET['hide'] === 'hide'){
+if(isset($_GET['hide']) && $_GET['hide'] === 'hide'){
     $hide = 'hidden';
 }
+
+$evalData = [];
+$evaluation = new Evaluation();
+$evalData = $evaluation->getEvalution();
 
 require_once "elements/head.php";
 ?>
@@ -31,6 +36,13 @@ require_once "elements/head.php";
     <p>Repas du <?= $_SESSION['idSession'] ?> chez <?= $_SESSION['restaurant'] ?></p>
     <p>Bienvenue <?= $_SESSION['name'] ?> </p>
     <div class="notation-sheet" id="notation-sheet"></div>
+    <h2>Que l'évaluation soit</h2>
+    <?php foreach($evalData as $evalLine): ?>
+        <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
+        <p><input type="number" id="note <?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>" min="<?= $evalLine["min"] ?>" max="<?= $evalLine["max"] ?>" step="<?= $evalLine["ponderation"] ?>" > /<?= $evalLine["max"] ?> ponderation:<?= $evalLine["ponderation"] ?></p>
+    <?php endforeach ?>
+    <pre>
+        <?= var_dump($evalData) ?>
+    </pre>
     
-    <script src="static/script.js"></script>
 </body>

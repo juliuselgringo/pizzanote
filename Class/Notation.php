@@ -3,7 +3,8 @@ require_once 'DBconnection.php';
 
 class Notation extends DBconnection{
     private $dataNotation = 'SELECT * FROM notation';
-    
+    private $regex = '/\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE)?|INSERT(\s+INTO)?|MERGE|SELECT|UPDATE|UNION(\s+ALL)?)\b/i';
+
 
     public function selectNotation(){
         return $this->dbQuery($this->dataNotation,'select');
@@ -46,21 +47,38 @@ class Notation extends DBconnection{
         header('Content-Type: application/json');
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'])){
             if($_POST['name'] === 'julius'){
-                $this->connectFct();
+                $itemtest = preg_match($this->regex,$_POST['item']);
+                $sousItemtest = preg_match($this->regex,$_POST['sous-item']);
+                $mintest = preg_match($this->regex,$_POST['min']);
+                $maxtest = preg_match($this->regex,$_POST['max']);
+                $ponderationtest = preg_match($this->regex,$_POST['ponderation']);
+                if($itemtest || $sousItemtest || $mintest || $maxtest || $ponderationtest){
+                    $messageAlert = "Tentative d'injection SQL!!!";
+                    $response = [
+                        'message' => $messageAlert,
+                        'class' => 'alert-danger'
+                    ];
+                    echo json_encode($response);
+                    $this->closeFct();
+                    
+                }
+                else{
+                    $this->connectFct();
 
-                $item = $_POST['item'];
-                $sousItem = $_POST['sous-item'];
-                $min = $_POST['min'];
-                $max = $_POST['max'];
-                $ponderation = $_POST['ponderation'];
-                $updateQuery = "UPDATE notation SET min = $min , max = $max , ponderation = $ponderation WHERE item = '$item' AND sous_item = '$sousItem';";
-                $messageAlert = $this->dbQuery($updateQuery, 'insert');
-                $response = [
-                    'message' => $messageAlert,
-                    'class' => 'alert-success'
-                ];
-                echo json_encode($response);
-                $this->closeFct();
+                    $item = $_POST['item'];
+                    $sousItem = $_POST['sous-item'];
+                    $min = $_POST['min'];
+                    $max = $_POST['max'];
+                    $ponderation = $_POST['ponderation'];
+                    $updateQuery = "UPDATE notation SET min = $min , max = $max , ponderation = $ponderation WHERE item = '$item' AND sous_item = '$sousItem';";
+                    $messageAlert = $this->dbQuery($updateQuery, 'update');
+                    $response = [
+                        'message' => $messageAlert,
+                        'class' => 'alert-success'
+                    ];
+                    echo json_encode($response);
+                    $this->closeFct();
+                }
             }
             else{
                 $messageAlert = "Vous n'avez pas de droit d'administration";

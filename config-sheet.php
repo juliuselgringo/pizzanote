@@ -32,13 +32,13 @@ if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-not
         <h1>Modifier les paramètres</h1>
         <div class="search">
             <label for='name' >Saisissez votre pseudo</label>
-            <input type='text' name='name' id='name' >
+            <input type='text' name='name' id='name' pattern="[a-zA-Z0-9]{3,20}" required >
         
             <label for="item-search">Saisissez un item</label>
-            <input id="item-search"></input>
+            <input type="text" id="item-search" ></input>
             
             <label for="sous-item-search">Saisissez un sous-item</label>
-            <input id="sous-item-search"></input>
+            <input type="text" id="sous-item-search"></input>
                 
             <button type='submit' name='connection' id='connection' value='connection'>Rechercher</button>
 
@@ -53,19 +53,19 @@ if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-not
         <div class="update">
             <form method='POST'>
                 <label for="item-search">Saisissez un item</label>
-                <input id="item-update" name="item-update"></input>
+                <input type="text" id="item-update" name="item-update"></input>
                 
                 <label for="sous-item-search">Saisissez un sous-item</label>
-                <input id="sous-item-update" name="sous-item-update"></input>
+                <input type="text" id="sous-item-update" name="sous-item-update"></input>
                 
                 <label for="min-update">Saisissez min</label>
-                <input id="min-update" name="min-update"></input>
+                <input type="number" id="min-update" name="min-update"></input>
 
                 <label for="max-update">Saisissez max</label>
-                <input id="max-update" name="max-update"></input>
+                <input type="number" id="max-update" name="max-update"></input>
 
                 <label for="ponderation-update">Saisissez ponderation</label>
-                <input id="ponderation-update" name="ponderation-update"></input>
+                <input type="number" id="ponderation-update" name="ponderation-update"></input>
 
                 <button type='submit' id='update-notation' name='update-notation' value='update-notation'>Modifier</button>
             </form>
