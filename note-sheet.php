@@ -38,6 +38,7 @@ require_once "elements/head.php";
         <button type="submit" name="share" value="share" >Partager</button>
         <button type="submit" name="hide" value="hide" >Cacher</button>
     </form>
+    <div class="<?= $alertClass ?>"><pre><?= var_dump($alertMsg) ?></pre></div>
     <img src="image-qrcode.png" <?= $hide ?> >
     <p>Repas du <?= $_SESSION['idSession'] ?> chez <?= $_SESSION['restaurant'] ?></p>
     <p>Bienvenue <?= $_SESSION['name'] ?> </p>
@@ -46,10 +47,10 @@ require_once "elements/head.php";
     <form method="POST">
         <?php foreach($evalData as $evalLine): ?>
             <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
-            <p><input type="number" name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>" min="<?= $evalLine["min"] ?>" max="<?= $evalLine["max"] ?>" step="<?= $evalLine["ponderation"] ?>" > /<?= $evalLine["max"] ?> ponderation:<?= $evalLine["ponderation"] ?></p>
+            <p><input type="number" name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>" min="<?= $evalLine["min"] ?>" max="<?= $evalLine["max"] ?>" step="<?= $evalLine["ponderation"] ?>" required > /<?= $evalLine["max"] ?> ponderation:<?= $evalLine["ponderation"] ?></p>
         <?php endforeach ?>
         <button type="submit" name="send-btn" value="send-btn" >Valider</button>
-        <div class="<?= $alertClass ?>"><pre><?= var_dump($alertMsg) ?></pre></div>
+        
     </form>
     
 </body>

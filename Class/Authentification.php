@@ -1,6 +1,6 @@
 <?php 
 class Authentification{
-    private $regex = '/^[a-zA-Z0-9]{3,20}$/';
+    private $regex = '/^[a-zA-Z0-9\s]{3,20}$/';
 
     public function connectSession($today){
         if($_GET['new-meal'] === 'new-meal'){

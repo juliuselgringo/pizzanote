@@ -2,6 +2,7 @@
 require_once "DBconnection.php";
 
 class Evaluation extends DBconnection{
+    private $regex = '/^[0-9]$/';
 
     public function getEvalution() {
         $this->connectFct();
@@ -26,11 +27,18 @@ class Evaluation extends DBconnection{
             $itemSousitemArr = explode("/", $itemSousitem);
             $item = $itemSousitemArr[0];
             $sousitem = $itemSousitemArr[1];
-            $resultQuery[] = "('" . $idSession . "','" . $restaurant . "','" . $item . "','" .$sousitem . "','" . $name . "'," . $note . ")";
+            if(preg_match($this->regex, $note)){
+                $resultQuery[] = "('" . $idSession . "','" . $restaurant . "','" . $item . "','" .$sousitem . "','" . $name . "'," . $note . ")";
+            }
+            else{
+                $alertMsg = "Saisie invalide!";
+                return $alertMsg;
+            }
         }
         $values = implode("," , $resultQuery);
         $finalQuery = "INSERT INTO session (idSession, restaurant, item, sous_item, name, note) VALUES $values";
         $alertMsg = $this->dbQuery($finalQuery, 'insert');
+        $_POST = [];
         return $alertMsg;
     }
 
