@@ -23,10 +23,10 @@ require_once "elements/head.php";
     <a href="index.php" >Accueil</a>
     <h1>Créez votre session repas</h1>
     <form method="GET">
-        <label for="name" >Saisissez votre pseudo <br>(3 à 10 caractères alphanumériques)</label>
-        <input type="text" name="name" id="name" pattern="[a-zA-Z0-9]{3,20}" required ><br>
-        <label for="name" >Saisissez le nom de la pizzeria <br>(3 à 10 caractères alphanumériques)</label>
-        <input type="text" name="restaurant" id="restaurant" pattern="[a-zA-Z0-9]{3,20}" required ><br>
+        <label for="name" >Saisissez votre pseudo <br>(3 à 20 caractères alphanumériques)</label>
+        <input type="text" name="name" id="name" pattern="[a-zA-Z0-9\s]{3,20}" required ><br>
+        <label for="name" >Saisissez le nom de la pizzeria <br>(3 à 20 caractères alphanumériques)</label>
+        <input type="text" name="restaurant" id="restaurant" pattern="[a-zA-Z0-9\s]{3,20}" required ><br>
         <button type="submit" name="new-meal" value="new-meal" >
             Créer
         </button>
