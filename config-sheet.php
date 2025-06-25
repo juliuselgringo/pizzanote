@@ -12,18 +12,6 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
     $alertClass = 'alert-danger';
 }
 
-/*
-if(isset($_POST['update-notation']) && $_POST['update-notation'] === 'update-notation'){
-    if(!empty($_POST['item-update']) && !empty($_POST['sous-item-update']) && !empty($_POST['update-min']) && !empty($_POST['update-max']) && !empty($_POST['update-ponderation'])){
-        echo "appel fct updateNotation";
-        $updateNotation = new Notation;
-        $alertMsg = $updateNotation->updateNotation();
-    }
-    else{
-        return "l'un des champs est vide!";
-    }
-}
-*/
 ?>
 
 <body>

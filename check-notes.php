@@ -1,17 +1,18 @@
 <?php 
 require_once 'Class/Evaluation.php';
+require_once 'Class/Restaurant.php';
 
-$check = new Evaluation;
-$datanote = $check->getSessionNote();
+$test = new Restaurant();
+$dataDev = $test->getArrays();
 
 require_once "elements/head.php";
 ?>
 
 <body>
     <a href="index.php" >Accueil</a>
-    <h1>Consultez les notes d'une session repas</h1>
-    <?php foreach($datanote as $dataLine): ?>
-        <p><?= $dataLine['idsession'] . ' ' . $dataLine['restaurant'] . ' ' . $dataLine['item'] . ' ' . $dataLine['sous_item'] . ' ' . $dataLine['name'] . ' ' . $dataLine['note'] ?></p>
-    <?php endforeach ?>
-    
+    <h1>Notes des restaurants</h1>
+
+    <pre>
+        <?= var_dump($dataDev) ?>
+    </pre>
 </body>

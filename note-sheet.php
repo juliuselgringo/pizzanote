@@ -1,11 +1,12 @@
 <?php 
 require_once "Class/Authentification.php";
 require_once "Class/Evaluation.php";
-
+// Authentification
 $authNoteSheet = new Authentification();
 var_dump($authNoteSheet->is_connected());
 $authNoteSheet->user_to_login();
 
+// Share with QR code
 include 'phpqrcode/qrlib.php';
 if(isset($_GET['share']) && $_GET['share'] === 'share'){
     $lien = "join-meal.php?idSession=" . $_SESSION['idSession'] . "&restaurant=" . $_SESSION['restaurant'];
@@ -17,6 +18,7 @@ if(isset($_GET['hide']) && $_GET['hide'] === 'hide'){
     $hide = 'hidden';
 }
 
+// Get data to display sheet note & insert new session data
 $evalData = [];
 $evaluation = new Evaluation();
 $evalData = $evaluation->getEvalution();
