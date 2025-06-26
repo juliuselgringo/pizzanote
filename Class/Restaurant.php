@@ -11,21 +11,23 @@ class Restaurant extends Evaluation{
     
     public function getArrays(){
         $dataSession = $this->getSessionNote();
-        $restaurantArray = [];
-        $sessionArray = [];
+        $restaurantsArray = [];
+        $sessionsArray = [];
         $Arrays = [];
         foreach($dataSession as $dataInput){
-            $restaurantArray[] = $dataInput['restaurant'];
-            $restaurantArray = array_unique($restaurantArray, SORT_STRING);
-            $sessionArray[] = $dataInput['idsession'];
-            $sessionArray = array_unique($sessionArray, SORT_STRING);
+            $restaurantsArray[] = $dataInput['restaurant'];
+            $restaurantsArray = array_unique($restaurantsArray, SORT_STRING);
+            $sessionsArray[] = $dataInput['idsession'];
+            $sessionsArray = array_unique($sessionsArray, SORT_STRING);
+            //+itemArray<-notation
+            //+sousitemArray<-notation
+            //+itemSousitemArray<-notation
         }
-        $Arrays = ['restaurants' => $restaurantArray, 'sessions' => $sessionArray];
+        $Arrays = ['restaurants' => $restaurantsArray, 'sessions' => $sessionsArray];
         return $Arrays;
     }
-
-
-
+    // Objectif: "SELECT item, sous_item, ROUND(AVG(note),2) FROM session WHERE restaurant = $restaurant GROUP BY item, sous_item ORDER BY item;"
+  
 }
 
 ?>
