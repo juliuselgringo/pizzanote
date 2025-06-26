@@ -6,7 +6,7 @@ require_once "DBconnection.php";
  * display note sheet from notation data, get data from session table, insert new data from note sheet
  */
 class Evaluation extends DBconnection{
-    private $regex = '/^[0-9]$/';
+    private $regex = '/^(?:[0-9](?:[.,]5)?|[0-9][.,]5)$/';
     
     /**
      * getEvalution
