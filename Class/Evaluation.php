@@ -3,20 +3,20 @@ require_once "DBconnection.php";
 
 /**
  * Evaluation
- * get data to display note sheet, insert new data, get data from session table
+ * display note sheet from notation data, get data from session table, insert new data from note sheet
  */
 class Evaluation extends DBconnection{
     private $regex = '/^[0-9]$/';
     
     /**
      * getEvalution
-     * get data to display note sheet
+     * display note sheet from notation data
      * 
      * @return array
      */
     public function getEvalution() {
         $this->connectFct();
-        $evalQuery = "SELECT * FROM notation;";
+        $evalQuery = 'SELECT * FROM notation GROUP BY id_note, item ORDER BY item;';
         return $this->dbQuery($evalQuery);
     }
     
@@ -26,15 +26,21 @@ class Evaluation extends DBconnection{
      * 
      * @return array
      */
-    public function getSessionNote(){
+    public function getSessionNote($idSession, $pseudo = ""){
         $this->connectFct();
-        $evalQuery = "SELECT * FROM session;";
-        return $this->dbQuery($evalQuery);
+        if(empty($pseudo)){
+            $evalQuery = "SELECT * FROM session WHERE idsession = $idSession;";
+        }
+        else{
+            $evalQuery = "SELECT * FROM session WHERE idsession = $idSession, name = $pseudo;";
+        }
+        $this->closeFct();
+        return $evalQuery;
     }
     
     /**
      * sendEvaluation
-     * insert data of a new session
+     * insert new data from note sheet
      * 
      * @return string
      */

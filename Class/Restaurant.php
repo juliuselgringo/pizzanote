@@ -1,33 +1,37 @@
 <?php
 require_once 'DBconnection.php';
-require_once 'Evaluation.php';
 
-class Restaurant extends Evaluation{
-
-    private function deleteData(){
-        $resetQuery = "TRUNCATE restaurant;";
-        $this->dbQuery($resetQuery);
+class Restaurant extends DBconnection{
+    
+    /**
+     * getBest
+     * 
+     * @return array
+     */
+    public function getBest(){
+        $this->connectFct();
+        $queryTable = "SELECT * FROM best_restaurant;";
+        $resultArray = $this->dbQuery($queryTable, 'select');
+        $this->closeFct();
+        return $resultArray;
     }
     
-    public function getArrays(){
-        $dataSession = $this->getSessionNote();
-        $restaurantsArray = [];
-        $sessionsArray = [];
-        $Arrays = [];
-        foreach($dataSession as $dataInput){
-            $restaurantsArray[] = $dataInput['restaurant'];
-            $restaurantsArray = array_unique($restaurantsArray, SORT_STRING);
-            $sessionsArray[] = $dataInput['idsession'];
-            $sessionsArray = array_unique($sessionsArray, SORT_STRING);
-            //+itemArray<-notation
-            //+sousitemArray<-notation
-            //+itemSousitemArray<-notation
-        }
-        $Arrays = ['restaurants' => $restaurantsArray, 'sessions' => $sessionsArray];
-        return $Arrays;
+    public function getRestaurantItem($restaurant){
+        $this->connectFct();
+        $queryTable = "SELECT * FROM restaurant_result_item WHERE restaurant = '$restaurant';";
+        $resultArray = $this->dbQuery($queryTable, 'select');
+        $this->closeFct();
+        return $resultArray;
     }
-    // Objectif: "SELECT item, sous_item, ROUND(AVG(note),2) FROM session WHERE restaurant = $restaurant GROUP BY item, sous_item ORDER BY item;"
-  
+
+    public function getArrayRestaurant(){
+        $this->connectFct();
+        $queryTable = "SELECT restaurant FROM best_restaurant;";
+        $resultArray = $this->dbQuery($queryTable, 'select');
+        $this->closeFct();
+        return $resultArray;
+    }
+
 }
 
 ?>

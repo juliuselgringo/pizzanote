@@ -10,12 +10,12 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
     $pizzaConfig = new DBconnection;
     $alertMsg = $pizzaConfig->closeFct();
     $alertClass = 'alert-danger';
+    header("Location: /index.php");
 }
 
 ?>
 
 <body>
-    <a href='index.php' >Accueil</a>
     <main>
         <h1>Modifier les paramètres</h1>
         <div class="search">
