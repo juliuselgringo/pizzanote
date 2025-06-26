@@ -44,7 +44,7 @@ class DBconnection{
      *
      * @param  string $pizzaQuery
      * @param  string $queryType
-     * @return void
+     * @return array
      */
     public function dbQuery($pizzaQuerry, $queryType = 'select'){
         try{

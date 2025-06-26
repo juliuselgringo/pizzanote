@@ -2,7 +2,7 @@
 require_once 'DBconnection.php';
 
 class Notation extends DBconnection{
-    private $dataNotation = 'SELECT * FROM notation';
+    private $dataNotation = 'SELECT * FROM notation GROUP BY id_note, item ORDER BY item;';
     private $regex = '/\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE)?|INSERT(\s+INTO)?|MERGE|SELECT|UPDATE|UNION(\s+ALL)?)\b/i';
 
 

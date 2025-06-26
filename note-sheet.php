@@ -48,8 +48,10 @@ require_once "elements/head.php";
     <h2>Que l'évaluation soit</h2>
     <form method="POST">
         <?php foreach($evalData as $evalLine): ?>
+            <hr>
             <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
-            <p><input type="number" name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>" min="<?= $evalLine["min"] ?>" max="<?= $evalLine["max"] ?>" step="<?= $evalLine["ponderation"] ?>" required > /<?= $evalLine["max"] ?> ponderation:<?= $evalLine["ponderation"] ?></p>
+            <p><input list="tickmarks" type="range" name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>" min="<?= $evalLine["min"] ?>" max="<?= $evalLine["max"] ?>" step="<?= $evalLine["ponderation"] ?>" required > /<?= $evalLine["max"] ?> ponderation:<?= $evalLine["ponderation"] ?></p>
+            <hr>
         <?php endforeach ?>
         <button type="submit" name="send-btn" value="send-btn" >Valider</button>
         
