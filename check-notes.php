@@ -36,6 +36,7 @@ require_once "elements/head.php";
     <!-- /////////////////////// -->
     <h2>Score par catégories:</h2>
     <form method="POST">
+        <label>Sélectionner le restaurant que vous souhaitez consuler:</label>
         <select name="restaurant">
             <option></option>
             <?php foreach($restaurantArray as $rest): ?>
@@ -59,8 +60,4 @@ require_once "elements/head.php";
             </tr>
         <?php endforeach ?>
     </table>
-    <pre>
-        <?= var_dump($_POST) ?>
-        <?= var_dump($restaurantArray) ?>
-    </pre>
 </body>

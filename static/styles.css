@@ -43,7 +43,7 @@ button{
     border-radius: 5px;
 }
 
-input{
+input,select{
     display: block;
     justify-self: center;
     margin:5px;
