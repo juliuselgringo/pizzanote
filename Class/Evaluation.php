@@ -24,7 +24,7 @@ class Evaluation extends DBconnection{
         $min = $evalLine['min'];
         $max = $evalLine['max'];
         $step = $evalLine['ponderation'];
-        if($step === 0.5){
+        if($step == 0.5){
             $step = 1;
             $min = $min * 2;
             $max = $max * 2;
