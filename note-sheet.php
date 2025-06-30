@@ -50,7 +50,9 @@ require_once "elements/head.php";
         <?php foreach($evalData as $evalLine): ?>
             <hr>
             <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
-            <p><input list="tickmarks" type="range" name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>" min="<?= $evalLine["min"] ?>" max="<?= $evalLine["max"] ?>" step="<?= $evalLine["ponderation"] ?>" required > /<?= $evalLine["max"] ?> ponderation:<?= $evalLine["ponderation"] ?></p>
+            <select name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>">
+                <?php $evaluation->displayNotesheet($evalLine) ?>
+            </select>
             <hr>
         <?php endforeach ?>
         <button type="submit" name="send-btn" value="send-btn" >Valider</button>

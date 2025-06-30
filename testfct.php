@@ -13,4 +13,12 @@ foreach($restaurantsArray as $restaurant){
 */
 echo count($restaurantsArray);
 
+/* 
+<select name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>">
+<?php for($i = $evalLine['min']; $i <= $evalLine['max']; $i + $evalLine['ponderation']): ?>
+    <option><?= $i ?></option>
+<?php endfor ?>
+</select>
+*/
+
 ?>

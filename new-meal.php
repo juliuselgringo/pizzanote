@@ -32,9 +32,4 @@ require_once "elements/head.php";
         </button>
         <div class="<?= $alertClass ?>"><?= $alertMsg ?></div>
     </form>
-    <?php  ?>
-    <pre>
-        <?= "Session: " . PHP_EOL . var_dump($_SESSION) ?>
-        <?= "GET: " . PHP_EOL . var_dump($_GET) ?>
-    </pre>
 </body>

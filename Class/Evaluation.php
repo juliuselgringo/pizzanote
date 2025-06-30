@@ -20,6 +20,25 @@ class Evaluation extends DBconnection{
         return $this->dbQuery($evalQuery);
     }
     
+    public function displayNotesheet($evalLine){
+        $min = $evalLine['min'];
+        $max = $evalLine['max'];
+        $step = $evalLine['ponderation'];
+        if($step === 0.5){
+            $step = 1;
+            $min = $min * 2;
+            $max = $max * 2;
+            for($i = $min; $i <= $max; $i++){
+                echo "<option>" . $i/2 . "</option>";
+            }
+        }
+        else{
+            for($i = $min; $i <= $max; $i++){
+                echo "<option>" . $i . "</option>";
+            }
+        }
+    }
+
     /**
      * getSessionNote
      * get data from session table
