@@ -21,14 +21,16 @@ require_once "elements/head.php"
 ?>
 
 <body>
-    <a href="index.php" >Accueil</a>
-    <h1>Rejoignez une session repas</h1>
+    <main>
+        <a href="index.php" >Accueil</a>
+        <h1>Rejoignez une session repas</h1>
 
-    <form method="GET">
-        <input type="text" name="idSession" value="<?= htmlentities($_GET['idSession']) ?>" >
-        <input type="text" name="restaurant" value="<?= htmlentities($_GET['restaurant']) ?>" >
-        <label for="name" >Saissez votre pseudo</label>
-        <input type="text" name="name" id="name" >
-        <button type="submit" name="join" value="join">Rejoindre</button>
-    </form>
+        <form method="GET">
+            <input type="text" name="idSession" value="<?= htmlentities($_GET['idSession']) ?>" >
+            <input type="text" name="restaurant" value="<?= htmlentities($_GET['restaurant']) ?>" >
+            <label for="name" >Saissez votre pseudo</label>
+            <input type="text" name="name" id="name" >
+            <button type="submit" name="join" value="join">Rejoindre</button>
+        </form>
+    </main>
 </body>

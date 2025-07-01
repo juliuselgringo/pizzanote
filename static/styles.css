@@ -1,12 +1,6 @@
-html{
-    width: 100vw;
-    height: 700vh;
+body{
     background: #4d1b80;
     background: linear-gradient(0deg,rgba(77, 27, 128, 1) 0%, rgba(255, 255, 255, 1) 100%);
-}
-
-body{
-    width: 100vw;
 }
 
 main{
@@ -15,7 +9,7 @@ main{
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    margin-bottom: 100vw;
+    margin-bottom: 120vw;
 }
 
 
@@ -83,7 +77,6 @@ select{
 table{
     border: 1px solid black;
     border-collapse: collapse;
-
     padding: 3px
 }
 

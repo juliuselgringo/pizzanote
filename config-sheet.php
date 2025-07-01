@@ -4,7 +4,7 @@ require_once 'Class/DBconnection.php';
 require_once 'Class/Notation.php';
 
 $alertClass= "alert-danger";
-$alertMsg = "Saisissez-votre au minimum votre pseudo";
+$alertMsg = "Saisissez votre pseudo";
 
 if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-connection'){
     $pizzaConfig = new DBconnection;
@@ -17,6 +17,7 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
 
 <body>
     <main>
+        <a href="index.php" >Accueil</a>
         <h1>Modifier les paramètres</h1>
         <div class="search">
             <label for='name' >Saisissez votre pseudo</label>

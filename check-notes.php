@@ -16,54 +16,55 @@ require_once "elements/head.php";
 ?>
 
 <body>
-    <a href="index.php" >Accueil</a>
-    <h1>Notes des restaurants</h1>
+    <main>
+        <a href="index.php" >Accueil</a>
+        <h1>Notes des restaurants</h1>
 
-    <!-- /////////////////////// -->
-    <h2>Le meilleur est: </h2>
-    <table>
-        <tr>
-            <th>Restaurant</th>
-            <th>Score</th>
-            
-        </tr>
-        <?php foreach($bestRestaurant as $rest): ?>
+        <!-- /////////////////////// -->
+        <h2>Le meilleur est: </h2>
+        <table>
             <tr>
-                <td><?= $rest['restaurant'] ?></td>
-                <td><?= $rest['score'] ?></td>
+                <th>Restaurant</th>
+                <th>Score</th>
+                
             </tr>
-        <?php endforeach ?> 
-        <p>Score Maximun : <?= $maxScore->getScoreMax() ?></p>
-    </table>
+            <?php foreach($bestRestaurant as $rest): ?>
+                <tr>
+                    <td><?= $rest['restaurant'] ?></td>
+                    <td><?= $rest['score'] ?></td>
+                </tr>
+            <?php endforeach ?> 
+            <p>Score Maximun : <?= $maxScore->getScoreMax() ?></p>
+        </table>
 
-    <!-- /////////////////////// -->
-    <h2>Score par catégories:</h2>
-    <form method="POST">
-        <label>Sélectionner le restaurant que vous souhaitez consuler:</label>
-        <select name="restaurant">
-            <option></option>
-            <?php foreach($restaurantArray as $rest): ?>
-                <option><?= $rest['restaurant'] ?></option>
+        <!-- /////////////////////// -->
+        <h2>Score par catégories:</h2>
+        <form method="POST">
+            <label>Sélectionner le restaurant que vous souhaitez consuler:</label>
+            <select name="restaurant">
+                <option></option>
+                <?php foreach($restaurantArray as $rest): ?>
+                    <option><?= $rest['restaurant'] ?></option>
+                <?php endforeach ?>
+            </select>
+            <button type='submit' name='restaurant-search' value="restaurant-search">Chercher</button>
+        </form>
+
+        <table>
+            <tr>
+                <th>Restaurant</th>
+                <th>Catégorie</th>
+                <th>Note</th>
+                <th>Note Max</th>
+            </tr>
+            <?php foreach($ItemScore as $rest): ?>
+                <tr>
+                    <td><?= $rest['restaurant'] ?></td>
+                    <td><?= $rest['item'] ?></td>
+                    <td><?= $rest['moyenne_par_item']?></td>
+                    <td><?= $maxScore->getScoreMax($rest['item']) ?></td>
+                </tr>
             <?php endforeach ?>
-        </select>
-        <button type='submit' name='restaurant-search' value="restaurant-search">Chercher</button>
-    </form>
-
-    <table>
-        <tr>
-            <th>Restaurant</th>
-            <th>Catégorie</th>
-            <th>Note</th>
-            <th>Note Max</th>
-        </tr>
-        <?php foreach($ItemScore as $rest): ?>
-            <tr>
-                <td><?= $rest['restaurant'] ?></td>
-                <td><?= $rest['item'] ?></td>
-                <td><?= $rest['moyenne_par_item']?></td>
-                <td><?= $maxScore->getScoreMax($rest['item']) ?></td>
-            </tr>
-        <?php endforeach ?>
-    </table>
-    
+        </table>
+    </main>
 </body>
