@@ -29,13 +29,7 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
             <input type="text" id="sous-item-search"></input>
                 
             <button type='submit' name='connection' id='connection' value='connection'>Rechercher</button>
-
-            <form method="POST">
-                <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
-            </form>
-
-            <div class='<?= $alertClass ?>' id='message'><?= $alertMsg ?></div>
-
+            
             <div id="display-search"></div>
         </div>
         <div class="update">
@@ -56,10 +50,13 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
                 <input type="number" id="ponderation-update" name="ponderation-update"></input>
 
                 <button type='submit' id='update-notation' name='update-notation' value='update-notation'>Modifier</button>
-            </form>
-            <pre>
-                <?= var_dump($_POST) ?>
-            </pre>
+
+                <form method="POST">
+                <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
+                </form>
+
+                <div class='<?= $alertClass ?>' id='message'><?= $alertMsg ?></div>
+                </form>
         </div>
 
         

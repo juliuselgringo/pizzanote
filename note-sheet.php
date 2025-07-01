@@ -3,7 +3,6 @@ require_once "Class/Authentification.php";
 require_once "Class/Evaluation.php";
 // Authentification
 $authNoteSheet = new Authentification();
-var_dump($authNoteSheet->is_connected());
 $authNoteSheet->user_to_login();
 
 // Share with QR code
@@ -40,25 +39,26 @@ require_once "elements/head.php";
         <button type="submit" name="share" value="share" >Partager</button>
         <button type="submit" name="hide" value="hide" >Cacher</button>
     </form>
-    <div class="<?= $alertClass ?>"><pre><?= var_dump($alertMsg) ?></pre></div>
-    <img src="image-qrcode.png" <?= $hide ?> >
-    <p>Repas du <?= $_SESSION['idSession'] ?> chez <?= $_SESSION['restaurant'] ?></p>
-    <p>Bienvenue <?= $_SESSION['name'] ?> </p>
-    <div class="notation-sheet" id="notation-sheet"></div>
-    <h2>Que l'évaluation soit</h2>
-    <form method="POST">
-        <?php foreach($evalData as $evalLine): ?>
-            <hr>
-            <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
-            <select name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>">
-                <?php $evaluation->displayNotesheet($evalLine) ?>
-            </select>
-            <hr>
-        <?php endforeach ?>
-        <button type="submit" name="send-btn" value="send-btn" >Valider</button>
-        
-    </form>
-    <pre>
-        <?= var_dump($_POST) ?>
-    </pre>
+    <div class="<?= $alertClass ?>"><pre><?= $alertMsg ?></pre></div>
+    <main>
+        <?php if(isset($_GET['share'])): ?>
+            <img src="image-qrcode.png" <?= $hide ?> >
+        <?php endif ?>
+        <p>Repas du <?= $_SESSION['idSession'] ?> chez <?= $_SESSION['restaurant'] ?></p>
+        <p>Bienvenue <?= $_SESSION['name'] ?> </p>
+        <div class="notation-sheet" id="notation-sheet"></div>
+        <h2>Que l'évaluation soit</h2>
+        <form method="POST">
+            <?php foreach($evalData as $evalLine): ?>
+                <hr>
+                <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
+                <select name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>">
+                    <?php $evaluation->displayNotesheet($evalLine) ?>
+                </select>
+                <hr>
+            <?php endforeach ?>
+            <button type="submit" name="send-btn" value="send-btn" >Valider</button>
+            
+        </form>
+    </main>
 </body>
