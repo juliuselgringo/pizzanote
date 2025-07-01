@@ -1,5 +1,8 @@
 <?php 
 require_once "elements/head.php";
+require_once "Class/DBconnection.php";
+$connectionDB = new DBconnection();
+$connectionDB->closeFct();
 //Napolitaine
 ?>
 

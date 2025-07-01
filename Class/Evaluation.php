@@ -85,7 +85,6 @@ class Evaluation extends DBconnection{
         $values = implode("," , $resultQuery);
         $finalQuery = "INSERT INTO session (idSession, restaurant, item, sous_item, name, note) VALUES $values";
         $alertMsg = $this->dbQuery($finalQuery, 'insert');
-        $_POST = [];
         return $alertMsg;
     }
 

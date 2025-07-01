@@ -1,8 +1,10 @@
-<?php 
+<?php
+
 require_once 'Class/Evaluation.php';
 require_once 'Class/Restaurant.php';
+require_once 'Class/Notation.php';
 
-
+$maxScore = new Notation();
 $checkNotes = new Restaurant();
 $bestRestaurant = $checkNotes->getBest();
 
@@ -31,6 +33,7 @@ require_once "elements/head.php";
                 <td><?= $rest['score'] ?></td>
             </tr>
         <?php endforeach ?> 
+        <p>Score Maximun : <?= $maxScore->getScoreMax() ?></p>
     </table>
 
     <!-- /////////////////////// -->
@@ -51,13 +54,16 @@ require_once "elements/head.php";
             <th>Restaurant</th>
             <th>Catégorie</th>
             <th>Note</th>
+            <th>Note Max</th>
         </tr>
         <?php foreach($ItemScore as $rest): ?>
             <tr>
                 <td><?= $rest['restaurant'] ?></td>
                 <td><?= $rest['item'] ?></td>
                 <td><?= $rest['moyenne_par_item']?></td>
+                <td><?= $maxScore->getScoreMax($rest['item']) ?></td>
             </tr>
         <?php endforeach ?>
     </table>
+    
 </body>

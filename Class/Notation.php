@@ -91,6 +91,20 @@ class Notation extends DBconnection{
         }
     }
 
+    public function getScoreMax($item = null){
+        $this->connectFct();
+        $ScoreMaxQuery='';
+        if($item ===null){
+            $ScoreMaxQuery = "SELECT SUM(max) FROM notation;";
+        }
+        else{
+            $ScoreMaxQuery = "SELECT SUM(max) FROM notation WHERE item = '$item';";
+        }
+        $resultScoreMax = $this->dbQuery($ScoreMaxQuery)[0]['sum'];
+        $this->closeFct();
+        return $resultScoreMax;
+    }
+
 }
 
 

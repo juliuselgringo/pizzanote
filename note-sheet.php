@@ -58,5 +58,7 @@ require_once "elements/head.php";
         <button type="submit" name="send-btn" value="send-btn" >Valider</button>
         
     </form>
-    
+    <pre>
+        <?= var_dump($_POST) ?>
+    </pre>
 </body>
