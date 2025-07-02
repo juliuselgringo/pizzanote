@@ -20,7 +20,7 @@ if(isset($_GET['hide']) && $_GET['hide'] === 'hide'){
 // Get data to display sheet note & insert new session data
 $evalData = [];
 $evaluation = new Evaluation();
-$evalData = $evaluation->getEvalution();
+$evalData = $evaluation->getNotation();
 $alertClass = '';
 $alertMsg = '';
 if(isset($_POST['send-btn']) && $_POST['send-btn'] === 'send-btn'){
@@ -60,5 +60,8 @@ require_once "elements/head.php";
             <button type="submit" name="send-btn" value="send-btn" >Valider</button>
             
         </form>
+        <pre>
+            <?= var_dump($_POST) ?>
+        </pre>
     </main>
 </body>

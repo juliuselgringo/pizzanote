@@ -95,10 +95,10 @@ class Notation extends DBconnection{
         $this->connectFct();
         $ScoreMaxQuery='';
         if($item ===null){
-            $ScoreMaxQuery = "SELECT SUM(max) FROM notation;";
+            $ScoreMaxQuery = "SELECT SUM(max * ponderation) FROM notation;";
         }
         else{
-            $ScoreMaxQuery = "SELECT SUM(max) FROM notation WHERE item = '$item';";
+            $ScoreMaxQuery = "SELECT SUM(max * ponderation) FROM notation WHERE item = '$item';";
         }
         $resultScoreMax = $this->dbQuery($ScoreMaxQuery)[0]['sum'];
         $this->closeFct();

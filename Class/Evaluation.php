@@ -9,33 +9,29 @@ class Evaluation extends DBconnection{
     private $regex = '/^(?:[0-9](?:[.,]5)?|[0-9][.,]5)$/';
     
     /**
-     * getEvalution
-     * display note sheet from notation data
+     * getNotation
+     * get data for note sheet from notation data
      * 
      * @return array
      */
-    public function getEvalution() {
+    public function getNotation() {
         $this->connectFct();
         $evalQuery = 'SELECT * FROM notation GROUP BY id_note, item ORDER BY item;';
         return $this->dbQuery($evalQuery);
     }
-    
+        
+    /**
+     * displayNotesheet
+     * display option for the select html
+     * @param  array $evalLine
+     * @return string
+     */
     public function displayNotesheet($evalLine){
         $min = $evalLine['min'];
         $max = $evalLine['max'];
-        $step = $evalLine['ponderation'];
-        if($step == 0.5){
-            $step = 1;
-            $min = $min * 2;
-            $max = $max * 2;
-            for($i = $min; $i <= $max; $i++){
-                echo "<option>" . $i/2 . "</option>";
-            }
-        }
-        else{
-            for($i = $min; $i <= $max; $i++){
-                echo "<option>" . $i . "</option>";
-            }
+        $ponderation = $evalLine['ponderation'];
+        for($i = $min; $i <= $max; $i++){
+            echo "<option>" . $i*$ponderation . "</option>";
         }
     }
 
