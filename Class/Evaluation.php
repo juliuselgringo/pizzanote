@@ -29,7 +29,6 @@ class Evaluation extends DBconnection{
     public function displayNotesheet($evalLine){
         $min = $evalLine['min'];
         $max = $evalLine['max'];
-        $id_note = $evalLine['ponderation'];
         for($i = $min; $i <= $max; $i++){
             echo "<option>" . $i . "</option>";
         }
@@ -65,13 +64,14 @@ class Evaluation extends DBconnection{
         $name = $_SESSION['name'];
         $restaurant = $_SESSION['restaurant'];
         $alertMsg = '';
-        $dataNote = array_splice($_POST, 0, 27);
+        $dataNote = array_splice($_POST, 0, 27); # pour enlever le bouton send de $_post
         foreach($dataNote as $itemSousitem => $note){
             $itemSousitemArr = explode("/", $itemSousitem);
             $item = $itemSousitemArr[0];
             $sousitem = $itemSousitemArr[1];
+            $idNote = $itemSousitemArr[2];
             if(preg_match($this->regex, $note)){
-                $resultQuery[] = "('" . $idSession . "','" . $restaurant . "','" . $item . "','" .$sousitem . "','" . $name . "'," . $note . ")";
+                $resultQuery[] = "('" . $idSession . "','" . $restaurant . "','" . $item . "','" .$sousitem . "','" . $name . "', " . $note . ", " . (int)$idNote . ")";
             }
             else{
                 $alertMsg = "Saisie invalide!";
@@ -79,7 +79,7 @@ class Evaluation extends DBconnection{
             }
         }
         $values = implode("," , $resultQuery);
-        $finalQuery = "INSERT INTO session (idSession, restaurant, item, sous_item, name, note) VALUES $values";
+        $finalQuery = "INSERT INTO session (idSession, restaurant, item, sous_item, name, note, id_note) VALUES $values";
         $alertMsg = $this->dbQuery($finalQuery, 'insert');
         return $alertMsg;
     }

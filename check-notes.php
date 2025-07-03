@@ -1,18 +1,18 @@
 <?php
 
-require_once 'Class/Evaluation.php';
 require_once 'Class/Restaurant.php';
 require_once 'Class/Notation.php';
 
 $maxScore = new Notation();
 $checkNotes = new Restaurant();
+
 $bestRestaurant = $checkNotes->getBest();
+
+$total = $maxScore->getScoreMax();
 
 $restaurantArray =  $checkNotes->getArrayRestaurant();
 $restaurant = (isset($_POST['restaurant-search']) && $_POST['restaurant-search'] === 'restaurant-search') ? $_POST['restaurant'] : "";
 $ItemScore = $checkNotes->getRestaurantItem($restaurant);
-
-$total = $maxScore->getScoreMax();
 
 require_once "elements/head.php";
 ?>
@@ -28,16 +28,14 @@ require_once "elements/head.php";
             <tr>
                 <th>Restaurant</th>
                 <th>Score %</th>
-                
             </tr>
             <?php foreach($bestRestaurant as $rest): ?>
                 <tr>
                     <td><?= $rest['restaurant'] ?></td>
-                    <td><?= round(($rest['score'] / $total * 100), 2) ?></td>
+                    <td><?= round($rest['score'] / $total * 100, 2) ?></td>
                 </tr>
             <?php endforeach ?> 
         </table>
-        <?= $total ?>
         <!-- /////////////////////// -->
         <h2>Score par catégories:</h2>
         <form method="POST">
@@ -61,9 +59,10 @@ require_once "elements/head.php";
                 <tr>
                     <td><?= $rest['restaurant'] ?></td>
                     <td><?= $rest['item'] ?></td>
-                    <td><?= round(($rest['moyenne_par_item'] / $maxScore->getScoreMax($rest['item']) * 100), 2) ?></td>
+                    <td><?= round(($rest['score_par_item'] / $maxScore->getScoreMax($rest['item'])) * 100, 2) ?></td>
                 </tr>
             <?php endforeach ?>
         </table>
+        
     </main>
 </body>

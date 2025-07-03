@@ -52,7 +52,7 @@ require_once "elements/head.php";
             <?php foreach($evalData as $evalLine): ?>
                 <hr>
                 <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
-                <select name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] ?>">
+                <select name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] . '/' . $evalLine['id_note'] ?>">
                     <?php $evaluation->displayNotesheet($evalLine) ?>
                 </select>
                 <hr>
