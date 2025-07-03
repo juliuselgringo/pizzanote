@@ -20,14 +20,12 @@ $itemArray = $selectInput->getItem();
         
             <label for="item-search">Saisissez un item</label>
             <select type="text" id="item-search">
+                <option></option>
                 <?php foreach($itemArray as $item): ?>
                     <option><?= $item ?></option>
                 <?php endforeach ?>
             </select>
             
-            <label for="sous-item-search">Saisissez un sous-item</label>
-            <input type="text" id="sous-item-search"></input>
-                
             <button type='submit' name='connection' id='connection' value='connection'>Rechercher</button>
             
             <div id="display-search"></div>
@@ -35,10 +33,12 @@ $itemArray = $selectInput->getItem();
         <div class="update">
             <form method='POST'>
                 <label for="item-search">Saisissez un item</label>
-                <input type="text" id="item-update" name="item-update"></input>
-                
-                <label for="sous-item-search">Saisissez un sous-item</label>
-                <input type="text" id="sous-item-update" name="sous-item-update"></input>
+                <select type="text" id="item-update" name="item-update">
+                    <option></option>
+                    <?php foreach($itemArray as $item): ?>
+                        <option><?= $item ?></option>
+                    <?php endforeach ?>
+                </select>
                 
                 <label for="min-update">Saisissez min</label>
                 <input type="number" id="min-update" name="min-update"></input>

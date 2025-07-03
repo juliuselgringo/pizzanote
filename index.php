@@ -1,10 +1,13 @@
 <?php 
 require_once "elements/head.php";
 require_once "Class/DBconnection.php";
+require_once "Class/Notation.php";
 $connectionDB = new DBconnection();
 $connectionDB->closeFct();
 $pizzaConfig = new DBconnection;
 $pizzaConfig->closeFct();
+$update = new Notation();
+$update->closeFct();
 //Napolitaine
 ?>
 

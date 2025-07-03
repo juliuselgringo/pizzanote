@@ -106,15 +106,15 @@ class Notation extends DBconnection{
 
     public function getItem(){
         $this->connectFct();
-        $itemQuery = "  SELECT item FROM notation;";
+        $itemQuery = "SELECT item, sous_item FROM notation ORDER BY id_note;";
         $itemResult = $this->dbQuery($itemQuery);
         $itemArray = [];
         foreach($itemResult as $item){
-            $itemArray[] = $item['item']; 
+            $itemArray[] = $item['item'] . "/" . $item["sous_item"]; 
         }
-        $itemArray = array_unique($itemArray, SORT_STRING);
         return $itemArray;
     }
+
 }
 
 

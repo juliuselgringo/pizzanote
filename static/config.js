@@ -4,15 +4,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // Se connecter et récupérer DataNotation
     const connectionBtn = document.querySelector("#connection");
     const inputName = document.querySelector("#name");
-    const itemSearch = document.getElementById('item-search');
-    const sousitemSearch = document.getElementById('sous-item-search');
+    const itemAndSub = document.getElementById('item-search');
     const displaySearch = document.getElementById('display-search');
     const displayMessage = document.getElementById('message');
 
     connectionBtn.addEventListener("click", (event) => {
         event.preventDefault();
         displaySearch.innerHTML = "";
-        console.log(inputName.value);
         let connectionData = new FormData();
         connectionData.append('name', inputName.value);
 
@@ -32,17 +30,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const dataNotation = data['dataNotation'];
             displayMessage.textContent= messageAlert;
             displayMessage.className = alertClass;
+            itemValue = itemAndSub.value;
+            itemArray = itemValue.split("/");
+            itemSearch = itemArray[0];
+            sousitemSearch = itemArray[1];
             dataNotation.forEach(item => {
                 
-                if (itemSearch.value === item['item'] && sousitemSearch.value === item['sous_item']){
+                if (itemSearch === item['item'] && sousitemSearch === item['sous_item']){
                     find = "<p>item : " + item["item"] + "</p><p>sous-item : " + item["sous_item"] + "</p><p>min : " + item['min'] + "</p><p>max : " + item['max'] + "</p><p>ponderation : " + item['ponderation'] + "</p><hr>";
                     displaySearch.innerHTML += find;
                 }
-                else if (itemSearch.value === item['item'] && sousitemSearch.value === ""){
+                else if (itemSearch === item['item'] && sousitemSearch === ""){
                     find = "<p>item : " + item["item"] + "</p><p>sous-item : " + item["sous_item"] + "</p><p>min : " + item['min'] + "</p><p>max : " + item['max'] + "</p><p>ponderation : " + item['ponderation'] + "</p><hr>";
                     displaySearch.innerHTML += find;
                 }
-                else if(itemSearch.value === "" && sousitemSearch.value === ""){
+                else if(itemSearch === "" && sousitemSearch === ""){
                     find = "<p>item : " + item["item"] + "</p><p>sous-item : " + item["sous_item"] + "</p><p>min : " + item['min'] + "</p><p>max : " + item['max'] + "</p><p>ponderation : " + item['ponderation'] + "</p><hr>";
                     displaySearch.innerHTML += find;
                 }    
@@ -55,8 +57,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
     //## UPDATE
-    let itemUpdate = document.getElementById("item-update");
-    let sousitemUpdate = document.getElementById("sous-item-update");
+    let itemToUpdate = document.getElementById("item-update");
     let minUpdate = document.getElementById("min-update");
     let maxUpdate = document.getElementById("max-update");
     let ponderationUpdate = document.getElementById("ponderation-update");
@@ -64,9 +65,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     updateBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        itemUpdate = itemUpdate.value;
-        sousitemUpdate = sousitemUpdate.value;
-        console.log(minUpdate.value);
+        itemAndSubUpdate = itemToUpdate.value;
+        itemAndSubArray = itemAndSubUpdate.split("/");
+        itemUpdate = itemAndSubArray[0];
+        sousitemUpdate = itemAndSubArray[1];
         minUpdate = String(minUpdate.value);
         maxUpdate = maxUpdate.value;
         ponderationUpdate = ponderationUpdate.value;
