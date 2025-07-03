@@ -37,7 +37,7 @@ require_once "elements/head.php";
                 </tr>
             <?php endforeach ?> 
         </table>
-
+        <?= $total ?>
         <!-- /////////////////////// -->
         <h2>Score par catégories:</h2>
         <form method="POST">

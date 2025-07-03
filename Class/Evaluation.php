@@ -29,7 +29,7 @@ class Evaluation extends DBconnection{
     public function displayNotesheet($evalLine){
         $min = $evalLine['min'];
         $max = $evalLine['max'];
-        $ponderation = $evalLine['ponderation'];
+        $id_note = $evalLine['ponderation'];
         for($i = $min; $i <= $max; $i++){
             echo "<option>" . $i . "</option>";
         }
