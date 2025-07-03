@@ -31,7 +31,7 @@ class Evaluation extends DBconnection{
         $max = $evalLine['max'];
         $ponderation = $evalLine['ponderation'];
         for($i = $min; $i <= $max; $i++){
-            echo "<option>" . $i*$ponderation . "</option>";
+            echo "<option>" . $i . "</option>";
         }
     }
 

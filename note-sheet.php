@@ -58,10 +58,9 @@ require_once "elements/head.php";
                 <hr>
             <?php endforeach ?>
             <button type="submit" name="send-btn" value="send-btn" >Valider</button>
-            
         </form>
-        <pre>
-            <?= var_dump($_POST) ?>
-        </pre>
+        <?php if ($authNoteSheet->is_connected()): ?>
+            <a href="logout.php" >Se déconnecter</a>
+        <?php endif ?>
     </main>
 </body>

@@ -5,13 +5,8 @@ require_once 'Class/Notation.php';
 
 $alertClass= "alert-danger";
 $alertMsg = "Saisissez votre pseudo";
-
-if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-connection'){
-    $pizzaConfig = new DBconnection;
-    $alertMsg = $pizzaConfig->closeFct();
-    $alertClass = 'alert-danger';
-    header("Location: /index.php");
-}
+$selectInput = new Notation;
+$itemArray = $selectInput->getItem();
 
 ?>
 
@@ -24,7 +19,11 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
             <input type='text' name='name' id='name' pattern="[a-zA-Z0-9]{3,20}" required >
         
             <label for="item-search">Saisissez un item</label>
-            <input type="text" id="item-search" ></input>
+            <select type="text" id="item-search">
+                <?php foreach($itemArray as $item): ?>
+                    <option><?= $item ?></option>
+                <?php endforeach ?>
+            </select>
             
             <label for="sous-item-search">Saisissez un sous-item</label>
             <input type="text" id="sous-item-search"></input>
@@ -52,14 +51,13 @@ if(isset($_POST['close-connection']) && $_POST['close-connection'] === 'close-co
 
                 <button type='submit' id='update-notation' name='update-notation' value='update-notation'>Modifier</button>
 
-                <form method="POST">
-                <button type='submit' name='close-connection' value='close-connection'>Se déconnecter</button>
-                </form>
-
                 <div class='<?= $alertClass ?>' id='message'><?= $alertMsg ?></div>
                 </form>
+                <a href="index.php" >Accueil</a>
         </div>
-
+        <pre>
+            <?= var_dump($itemArray) ?>
+        </pre>
         
     </main>
 

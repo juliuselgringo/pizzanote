@@ -64,7 +64,6 @@ class Notation extends DBconnection{
                 }
                 else{
                     $this->connectFct();
-
                     $item = $_POST['item'];
                     $sousItem = $_POST['sous-item'];
                     $min = $_POST['min'];
@@ -105,6 +104,17 @@ class Notation extends DBconnection{
         return $resultScoreMax;
     }
 
+    public function getItem(){
+        $this->connectFct();
+        $itemQuery = "  SELECT item FROM notation;";
+        $itemResult = $this->dbQuery($itemQuery);
+        $itemArray = [];
+        foreach($itemResult as $item){
+            $itemArray[] = $item['item']; 
+        }
+        $itemArray = array_unique($itemArray, SORT_STRING);
+        return $itemArray;
+    }
 }
 
 
