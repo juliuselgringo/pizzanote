@@ -55,10 +55,6 @@ $itemArray = $selectInput->getItem();
                 </form>
                 <a href="index.php" >Accueil</a>
         </div>
-        <pre>
-            <?= var_dump($itemArray) ?>
-        </pre>
-        
     </main>
 
     <script src="static/config.js"></script>
