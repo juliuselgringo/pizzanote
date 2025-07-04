@@ -33,7 +33,7 @@ require_once "elements/head.php";
             <label for="name" >Saisissez le nom de la pizzeria <br>(3 à 20 caractères alphanumériques)</label>
             <input type="text" name="restaurant" id="restaurant" pattern="[a-zA-Z0-9\s]{3,20}" ><br>
             <label>Ou un restaurant déjà évalué:</label>
-            <select name="restaurant">
+            <select name="select-restaurant">
                 <option></option>
                 <?php foreach($restaurantArray as $rest): ?>
                     <option><?= $rest['restaurant'] ?></option>

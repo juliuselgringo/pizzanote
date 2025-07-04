@@ -15,12 +15,17 @@ class Authentification{
      * @return void
      */
     public function connectSession($today){
-        if($_GET['new-meal'] === 'new-meal' && !empty($_GET['name']) && !empty($_GET['restaurant'])){
-            if(preg_match($this->regex, $_GET['name']) && preg_match($this->regex, $_GET['restaurant'])){
+        if($_GET['new-meal'] === 'new-meal' && !empty($_GET['name']) && (!empty($_GET['restaurant']) || !empty($_GET['select-restaurant']))){
+            if(preg_match($this->regex, $_GET['name']) && (preg_match($this->regex, $_GET['restaurant']) || !empty($_GET['select-restaurant']))){
                 session_start();
                 $_SESSION['idSession'] = $today;
                 $_SESSION['name'] = htmlentities($_GET['name']);
-                $_SESSION['restaurant'] = htmlentities($_GET['restaurant']);
+                if(empty($_GET['restaurant'])){
+                    $_SESSION['restaurant'] = htmlentities($_GET['select-restaurant']);
+                }
+                else{
+                    $_SESSION['restaurant'] = htmlentities($_GET['restaurant']);
+                }
                 header('Location: /note-sheet.php');
                 exit;
             }

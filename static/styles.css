@@ -90,3 +90,32 @@ tr, td, th{
 .logo{
     margin: 15vw;
 }
+
+@media (min-width:850px){
+    button{
+        width: 30vw;
+        height: 7vw;
+    }
+
+    .logo{
+        width: 40%;
+        height: 40%;
+        margin-top: 2vw;
+        margin-left: 30vw;
+    }
+
+    select{
+        height: 2vw;
+        width: 10vw;
+    }
+    
+    table{
+        margin:5vw;
+        margin-right: 10vw;
+        margin-left: 10vw;
+    }
+
+    hr{
+        width: 17vw;
+    }
+}
