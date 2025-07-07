@@ -36,7 +36,7 @@ require_once "elements/head.php";
             <select name="select-restaurant">
                 <option></option>
                 <?php foreach($restaurantArray as $rest): ?>
-                    <option><?= $rest['restaurant'] ?></option>
+                    <option><?= htmlentities($rest['restaurant']) ?></option>
                 <?php endforeach ?>
             </select>
             <button type="submit" name="new-meal" value="new-meal" >

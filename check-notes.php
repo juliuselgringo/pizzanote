@@ -8,9 +8,13 @@ $checkNotes = new Restaurant();
 
 $bestRestaurant = $checkNotes->getBest();
 
+# data pour le calcul score en %
 $total = $maxScore->getScoreMax();
 
+# data pour le select
 $restaurantArray =  $checkNotes->getArrayRestaurant();
+
+# récupérer les notes d'un restaurant par item
 $restaurant = (isset($_POST['restaurant-search']) && $_POST['restaurant-search'] === 'restaurant-search') ? $_POST['restaurant'] : "";
 $ItemScore = $checkNotes->getRestaurantItem($restaurant);
 
@@ -31,8 +35,8 @@ require_once "elements/head.php";
             </tr>
             <?php foreach($bestRestaurant as $rest): ?>
                 <tr>
-                    <td><?= $rest['restaurant'] ?></td>
-                    <td><?= round($rest['score'] / $total * 100, 2) ?></td>
+                    <td><?= htmlentities($rest['restaurant']) ?></td>
+                    <td><?= round(htmlentities($rest['score']) / $total * 100, 2) ?></td>
                 </tr>
             <?php endforeach ?> 
         </table>
@@ -43,7 +47,7 @@ require_once "elements/head.php";
             <select name="restaurant">
                 <option></option>
                 <?php foreach($restaurantArray as $rest): ?>
-                    <option><?= $rest['restaurant'] ?></option>
+                    <option><?= htmlentities($rest['restaurant']) ?></option>
                 <?php endforeach ?>
             </select>
             <button type='submit' name='restaurant-search' value="restaurant-search">Chercher</button>
@@ -57,9 +61,9 @@ require_once "elements/head.php";
             </tr>
             <?php foreach($ItemScore as $rest): ?>
                 <tr>
-                    <td><?= $rest['restaurant'] ?></td>
-                    <td><?= $rest['item'] ?></td>
-                    <td><?= round(($rest['score_par_item'] / $maxScore->getScoreMax($rest['item'])) * 100, 2) ?></td>
+                    <td><?= htmlentities($rest['restaurant']) ?></td>
+                    <td><?= htmlentities($rest['item']) ?></td>
+                    <td><?= round(htmlentities($rest['score_par_item']) / htmlentities($maxScore->getScoreMax($rest['item'])) * 100, 2) ?></td>
                 </tr>
             <?php endforeach ?>
         </table>

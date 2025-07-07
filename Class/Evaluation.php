@@ -3,7 +3,10 @@ require_once "DBconnection.php";
 
 /**
  * Evaluation
- * display note sheet from notation data, get data from session table, insert new data from note sheet
+ * get data from notation table
+ * display note sheet from notation table
+ * get data from session table 
+ * insert new data from note sheet
  */
 class Evaluation extends DBconnection{
     private $regex = '/^(?:[0-9](?:[.,]5)?|[0-9][.,]5)$/';
@@ -27,10 +30,10 @@ class Evaluation extends DBconnection{
      * @return string
      */
     public function displayNotesheet($evalLine){
-        $min = $evalLine['min'];
-        $max = $evalLine['max'];
+        $min = htmlentities($evalLine['min']);
+        $max = htmlentities($evalLine['max']);
         for($i = $min; $i <= $max; $i++){
-            echo "<option>" . $i . "</option>";
+            echo "<option>" . htmlentities($i) . "</option>";
         }
     }
 
@@ -68,10 +71,10 @@ class Evaluation extends DBconnection{
         foreach($dataNote as $itemSousitem => $note){
             $itemSousitemArr = explode("/", $itemSousitem);
             $item = $itemSousitemArr[0];
-            $sousitem = $itemSousitemArr[1];
+            $sous_item = $itemSousitemArr[1];
             $idNote = $itemSousitemArr[2];
             if(preg_match($this->regex, $note)){
-                $resultQuery[] = "('" . $idSession . "','" . $restaurant . "','" . $item . "','" .$sousitem . "','" . $name . "', " . $note . ", " . (int)$idNote . ")";
+                $resultQuery[] = [$idSession,$restaurant,$item,$sous_item,$name,$note,$idNote];
             }
             else{
                 $alertMsg = "Saisie invalide!";
@@ -79,9 +82,28 @@ class Evaluation extends DBconnection{
             }
         }
         $values = implode("," , $resultQuery);
-        $finalQuery = "INSERT INTO session (idSession, restaurant, item, sous_item, name, note, id_note) VALUES $values";
-        $alertMsg = $this->dbQuery($finalQuery, 'insert');
-        return $alertMsg;
+
+        try{
+            for($i = 0; $i < count($resultQuery); $i++){
+                $finalQuery = $this->pdo->prepare("INSERT INTO session 
+                (idSession, restaurant, item, sous_item, name, note, id_note) VALUES (:idSession, :restaurant, :item, :sous_item, :name, :note, :idNote);");
+                $finalQuery->bindParam('idSession', $resultQuery[$i][0]);
+                $finalQuery->bindParam('restaurant', $resultQuery[$i][1]);
+                $finalQuery->bindParam('item', $resultQuery[$i][2]);
+                $finalQuery->bindParam('sous_item', $resultQuery[$i][3]);
+                $finalQuery->bindParam('name', $resultQuery[$i][4]);
+                $finalQuery->bindParam('note', $resultQuery[$i][5]);
+                $finalQuery->bindParam('idNote', $resultQuery[$i][6]);
+                $finalQuery->execute();
+                
+            }
+            return "Votre évaluation a été enregistré avec succés.";
+        }
+        catch(PDOException $e){
+            $error = $e->getMessage();
+            return "Erreur lors de l'insertion!" . $error;
+        }
+
     }
 
 }

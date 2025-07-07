@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     updateBtn.addEventListener('click', (event) => {
         event.preventDefault();
         itemAndSubUpdate = itemToUpdate.value;
-        itemAndSubArray = itemAndSubUpdate.split("/");
+        const itemAndSubArray = itemAndSubUpdate.split("/");
         itemUpdate = itemAndSubArray[0];
         sousitemUpdate = itemAndSubArray[1];
         minUpdate = String(minUpdate.value);

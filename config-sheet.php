@@ -56,6 +56,5 @@ $itemArray = $selectInput->getItem();
                 <a href="index.php" >Accueil</a>
         </div>
     </main>
-
     <script src="static/config.js"></script>
 </body>

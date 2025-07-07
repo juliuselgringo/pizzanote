@@ -8,7 +8,7 @@ $authNoteSheet->user_to_login();
 // Share with QR code
 include 'phpqrcode/qrlib.php';
 if(isset($_GET['share']) && $_GET['share'] === 'share'){
-    $lien = "join-meal.php?idSession=" . $_SESSION['idSession'] . "&restaurant=" . $_SESSION['restaurant'];
+    $lien = "join-meal.php?idSession=" . htmlentities($_SESSION['idSession']) . "&restaurant=" . htmlentities($_SESSION['restaurant']);
     QRcode::png($lien, 'image-qrcode.png');
 }
 
@@ -44,15 +44,15 @@ require_once "elements/head.php";
         <?php if(isset($_GET['share'])): ?>
             <img src="image-qrcode.png" <?= $hide ?> >
         <?php endif ?>
-        <p>Repas du <?= $_SESSION['idSession'] ?> chez <?= $_SESSION['restaurant'] ?></p>
-        <p>Bienvenue <?= $_SESSION['name'] ?> </p>
+        <p>Repas du <?= htmlentities($_SESSION['idSession']) ?> chez <?= htmlentities($_SESSION['restaurant']) ?></p>
+        <p>Bienvenue <?= htmlentities($_SESSION['name']) ?> </p>
         <div class="notation-sheet" id="notation-sheet"></div>
         <h2>Que l'évaluation soit</h2>
         <form method="POST">
             <?php foreach($evalData as $evalLine): ?>
                 <hr>
                 <p><?= $evalLine["item"] ?> : <?= $evalLine['sous_item'] ?></p>
-                <select name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] . '/' . $evalLine['id_note'] ?>">
+                <select name="<?= $evalLine["item"] . '/' . $evalLine['sous_item'] . '/' . htmlentities($evalLine['id_note']) ?>">
                     <?php $evaluation->displayNotesheet($evalLine) ?>
                 </select>
                 <hr>
