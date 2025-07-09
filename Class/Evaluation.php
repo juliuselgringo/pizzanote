@@ -97,6 +97,7 @@ class Evaluation extends DBconnection{
                 $finalQuery->execute();
                 
             }
+            $this->closeFct();
             return "Votre évaluation a été enregistré avec succés.";
         }
         catch(PDOException $e){
