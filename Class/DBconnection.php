@@ -3,13 +3,6 @@
 class DBconnection{
     
     public $pdo = null;
-    /*
-    private $dsn = 'pgsql:host=localhost;port=5432;dbname=hupo2832_pizzanote';
-    private $user = 'hupo2832';
-    private $password = 'eHf3-BnLJ-Faw(';
-    private $pdo = null;
-    */
-
     
     /**
      * connectFct
