@@ -26,10 +26,8 @@ require_once "elements/head.php"
         <h1>Rejoignez une session repas</h1>
 
         <form method="GET">
-            <label>Saisissez l'idSession (c'est la date du jour):</label>
-            <input type="text" name="idSession" value="<?= date('d/m/Y')?>" >
-            <label>Saisissez le nom du retaurant (demander la sythaxe exacte):</label>
-            <input type="text" name="restaurant" >
+            <input type="text" name="idSession" value="<?= htmlentities($_GET['idSession']) ?>" >
+            <input type="text" name="restaurant" value="<?= htmlentities($_GET['restaurant']) ?>" >
             <label for="name" >Saissez votre pseudo</label>
             <input type="text" name="name" id="name" >
             <button type="submit" name="join" value="join">Rejoindre</button>

@@ -8,7 +8,7 @@ $authNoteSheet->user_to_login();
 // Share with QR code
 include 'phpqrcode/qrlib.php';
 if(isset($_GET['share']) && $_GET['share'] === 'share'){
-    $lien = "join-meal.php?idSession=" . htmlentities($_SESSION['idSession']) . "&restaurant=" . htmlentities($_SESSION['restaurant']);
+    $lien = "join-meal-QR.php?idSession=" . htmlentities($_SESSION['idSession']) . "&restaurant=" . htmlentities($_SESSION['restaurant']);
     QRcode::png($lien, 'image-qrcode.png');
 }
 
