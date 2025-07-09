@@ -37,7 +37,7 @@ class DBconnection{
      */
     public function closeFct() {
         $this->pdo = null;
-        return "La connection à la base de donnée a été fermée avec succés.";
+        return "La connection à la base de données a été fermé avec succés.";
     }
 
         /**
