@@ -2,7 +2,6 @@
 
 class DBconnection{
     
-    private $dsn = 'pgsql:host=localhost;dbname=pizzanote';
     public $pdo = null;
     /*
     private $dsn = 'pgsql:host=localhost;port=5432;dbname=hupo2832_pizzanote';
@@ -25,10 +24,11 @@ class DBconnection{
         preg_match("/([^#]+)\=(.*)/",$line,$matches);
         if(isset($matches[2])){ putenv(trim($line)); }
         }
+        $dns = 'pgsql:host=localhost;port=5432;dbname=' . getenv('DBNAME');
         $user = getenv('USER');
         $password = getenv('PASSWORD');
         try{
-            $this->pdo =new PDO($this->dsn, $user, $password);
+            $this->pdo =new PDO($dns, $user, $password);
             return 'Vous êtes connecté à la base de données.';
         }
         catch(PDOException $e){
