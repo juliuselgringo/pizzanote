@@ -62,7 +62,7 @@ class Evaluation extends DBconnection{
      * @return string
      */
     public function sendEvaluation(){
-        $this->connectFct();
+        
         $idSession = $_SESSION['idSession'];
         $name = $_SESSION['name'];
         $restaurant = $_SESSION['restaurant'];
@@ -83,6 +83,7 @@ class Evaluation extends DBconnection{
         }
 
         try{
+            $this->connectFct();
             for($i = 0; $i < count($resultQuery); $i++){
                 $finalQuery = $this->pdo->prepare("INSERT INTO session 
                 (idSession, restaurant, item, sous_item, name, note, id_note) VALUES (:idSession, :restaurant, :item, :sous_item, :name, :note, :idNote);");
