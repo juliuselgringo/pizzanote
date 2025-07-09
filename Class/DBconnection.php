@@ -1,9 +1,8 @@
 <?php
+
 class DBconnection{
     
     private $dsn = 'pgsql:host=localhost;dbname=pizzanote';
-    private $user = 'postgres';
-    private $password = '29017507';
     public $pdo = null;
     /*
     private $dsn = 'pgsql:host=localhost;port=5432;dbname=hupo2832_pizzanote';
@@ -19,8 +18,17 @@ class DBconnection{
      * @return void
      */
     public function connectFct(){
+        $env = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . ".env");
+        $lines = explode("\n",$env);
+
+        foreach($lines as $line){
+        preg_match("/([^#]+)\=(.*)/",$line,$matches);
+        if(isset($matches[2])){ putenv(trim($line)); }
+        }
+        $user = getenv('USER');
+        $password = getenv('PASSWORD');
         try{
-            $this->pdo =new PDO($this->dsn, $this->user, $this->password);
+            $this->pdo =new PDO($this->dsn, $user, $password);
             return 'Vous êtes connecté à la base de données.';
         }
         catch(PDOException $e){
