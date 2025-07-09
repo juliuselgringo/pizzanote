@@ -15,7 +15,7 @@ class Authentification{
      * @return void
      */
     public function connectSession($today){
-        if($_GET['new-meal'] === 'new-meal' && !empty($_GET['name']) && (!empty($_GET['restaurant']) || !empty($_GET['select-restaurant']))){
+        if(isset($_GET['new-meal']) && $_GET['new-meal'] === 'new-meal' && !empty($_GET['name']) && (!empty($_GET['restaurant']) || !empty($_GET['select-restaurant']))){
             if(preg_match($this->regex, $_GET['name']) && (preg_match($this->regex, $_GET['restaurant']) || !empty($_GET['select-restaurant']))){
                 session_start();
                 $_SESSION['idSession'] = trim((string)$today);

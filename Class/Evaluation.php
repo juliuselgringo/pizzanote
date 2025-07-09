@@ -81,7 +81,6 @@ class Evaluation extends DBconnection{
                 return $alertMsg;
             }
         }
-        $values = implode("," , $resultQuery);
 
         try{
             for($i = 0; $i < count($resultQuery); $i++){
