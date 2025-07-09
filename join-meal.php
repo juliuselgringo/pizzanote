@@ -5,9 +5,9 @@ require_once "Class/Authentification.php";
 if($_GET['join'] === 'join'){
     if(!empty($_GET['name']) && !empty($_GET['restaurant']) && !empty($_GET['idSession'])){
         session_start();
-        $_SESSION['idSession'] = $_GET['idSession'];
-        $_SESSION['name'] = $_GET['name'];
-        $_SESSION['restaurant'] = $_GET['restaurant'];
+        $_SESSION['idSession'] = trim($_GET['idSession']);
+        $_SESSION['name'] = trim($_GET['name']);
+        $_SESSION['restaurant'] = trim($_GET['restaurant']);
         header('Location: /note-sheet.php');
         exit;
     }
