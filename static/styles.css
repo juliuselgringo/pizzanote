@@ -44,7 +44,7 @@ button{
 input,select{
     display: block;
     justify-self: center;
-    margin:5px;
+    margin:auto;
     border-radius: 5px;
 }
 
@@ -67,6 +67,7 @@ select{
     display: block;
     justify-self: center;
     text-align: center;
+    margin: auto;
     background-color: grey;
     border: 1px solid black;
     margin-top: 5px;
