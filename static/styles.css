@@ -119,4 +119,10 @@ tr, td, th{
     hr{
         width: 17vw;
     }
+
+    .qrcode-display{
+        width:25vw;
+        height: 25vw;
+        margin: auto;
+    }
 }

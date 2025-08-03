@@ -42,7 +42,7 @@ require_once "elements/head.php";
     <div class="<?= $alertClass ?>"><pre><?= $alertMsg ?></pre></div>
     <main>
         <?php if(isset($_GET['share'])): ?>
-            <img src="image-qrcode.png" <?= $hide ?> >
+            <img class="qrcode-display" src="image-qrcode.png" <?= $hide ?> >
         <?php endif ?>
         <p>Repas du <?= htmlentities($_SESSION['idSession']) ?> chez <?= htmlentities($_SESSION['restaurant']) ?></p>
         <p>Bienvenue <?= htmlentities($_SESSION['name']) ?> </p>
